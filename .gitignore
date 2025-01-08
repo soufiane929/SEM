@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Entwicklungsumgebungen
+.idea/
+.vscode/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
