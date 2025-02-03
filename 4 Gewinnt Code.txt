@@ -1,0 +1,121 @@
+class Spielbrett:
+    def __init__(self, zeilen=6, spalten=7):
+        """Initialisiert ein leeres Spielfeld."""
+        self.zeilen = zeilen
+        self.spalten = spalten
+        self.brett = [[0 for _ in range(spalten)] for _ in range(zeilen)]
+
+    def zeige_brett(self):
+        """Gibt das Spielfeld auf der Konsole aus."""
+        for zeile in self.brett:
+            print(" | ".join(str(zelle) if zelle != 0 else "." for zelle in zeile))
+        print("-" * (self.spalten * 4 - 1))
+
+    def platziere_stein(self, spalte, symbol):
+        """Platziert einen Stein im Spielfeld."""
+        for zeile in reversed(self.brett):
+            if zeile[spalte] == 0:
+                zeile[spalte] = symbol
+                return True
+        return False  # Wenn die Spalte voll ist
+
+    def ist_voller_spalte(self, spalte):
+        """Prüft, ob eine Spalte voll ist."""
+        return self.brett[0][spalte] != 0
+
+    def pruefe_gewinn(self, symbol):
+        """Prüft, ob ein Spieler gewonnen hat."""
+        # Horizontale Überprüfung
+        for zeile in self.brett:
+            for spalte in range(self.spalten - 3):
+                if zeile[spalte:spalte + 4] == [symbol] * 4:
+                    return True
+
+        # Vertikale Überprüfung
+        for spalte in range(self.spalten):
+            for zeile in range(self.zeilen - 3):
+                if all(self.brett[zeile + i][spalte] == symbol for i in range(4)):
+                    return True
+
+        # Diagonale Überprüfung (von links unten nach rechts oben)
+        for zeile in range(self.zeilen - 3):
+            for spalte in range(self.spalten - 3):
+                if all(self.brett[zeile + i][spalte + i] == symbol for i in range(4)):
+                    return True
+
+        # Diagonale Überprüfung (von rechts unten nach links oben)
+        for zeile in range(self.zeilen - 3):
+            for spalte in range(3, self.spalten):
+                if all(self.brett[zeile + i][spalte - i] == symbol for i in range(4)):
+                    return True
+
+        return False
+
+    def ist_voll(self):
+        """Prüft, ob das Spielfeld voll ist."""
+        return all(self.brett[0][spalte] != 0 for spalte in range(self.spalten))
+
+
+class Spieler:
+    def __init__(self, name, symbol):
+        """Initialisiert einen Spieler mit Namen und Symbol."""
+        self.name = name
+        self.symbol = symbol
+
+    def mache_zug(self, spielbrett):
+        """Fordert den Spieler auf, einen Zug zu machen."""
+        while True:
+            try:
+                spalte = int(input(f"{self.name}, wähle eine Spalte (0-{spielbrett.spalten - 1}): "))
+                if 0 <= spalte < spielbrett.spalten:
+                    if not spielbrett.ist_voller_spalte(spalte):
+                        return spalte
+                    else:
+                        print("Diese Spalte ist voll. Wähle eine andere Spalte.")
+                else:
+                    print(f"Bitte gib eine Zahl zwischen 0 und {spielbrett.spalten - 1} ein.")
+            except ValueError:
+                print("Ungültige Eingabe. Bitte gib eine Zahl ein.")
+
+
+class Spiel:
+    def __init__(self):
+        """Initialisiert das Spiel."""
+        self.spielbrett = Spielbrett()
+        self.spieler1 = Spieler(input("Name Spieler 1: "), "X")
+        self.spieler2 = Spieler(input("Name Spieler 2: "), "O")
+        self.aktueller_spieler = self.spieler1
+
+    def starte(self):
+        """Startet das Spiel."""
+        print("\nWillkommen bei 4 Gewinnt!")
+        self.spielbrett.zeige_brett()
+
+        while True:
+            # Spieler macht einen Zug
+            spalte = self.aktueller_spieler.mache_zug(self.spielbrett)
+            self.spielbrett.platziere_stein(spalte, self.aktueller_spieler.symbol)
+
+            # Aktuelles Spielfeld anzeigen
+            self.spielbrett.zeige_brett()
+
+            # Prüfen, ob der aktuelle Spieler gewonnen hat
+            if self.spielbrett.pruefe_gewinn(self.aktueller_spieler.symbol):
+                print(f"Herzlichen Glückwunsch, {self.aktueller_spieler.name}! Du hast gewonnen!")
+                break
+
+            # Prüfen, ob das Spielfeld voll ist
+            if self.spielbrett.ist_voll():
+                print("Das Spielfeld ist voll. Unentschieden!")
+                break
+
+            # Spieler wechseln
+            self.aktueller_spieler = (
+                self.spieler1 if self.aktueller_spieler == self.spieler2 else self.spieler2
+            )
+
+
+# Spiel starten
+if __name__ == "__main__":
+    spiel = Spiel()
+    spiel.starte()
