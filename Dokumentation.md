@@ -5,3 +5,4 @@ Dokumentation der Arbeitsschritte
 3. Bedingungen für den Sieg eines Spielers implementiert.
 4. Korrekte Ausgabe des Spielfeldes mit anschließender Eingabe und Platzierung des Zeichens im Spielfeld.
 5. Spiel Grundlegend fertig, Klassen und Methoden fehlen noch.
+6. Klassen und Methoden erfolgreich in das Programm implementiert.

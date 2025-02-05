@@ -4,13 +4,16 @@ Verwendete Klassen und Methoden:
 Klasse:
 Spielbrett -> für das Spielfeld
 Methoden:
-initialisiere_brett() -> leeres Spielfeld
-platziere_stein(spalte, spieler) -> Symbol platzieren
-ist_voller_spalte(spalte) -> Prüfen ob Spalte voll ist		
+__init__ für Spielfeld, Spalte, Zeile, Zellen
+tiefste_zeile : Zum feststellen der tiefsten Zeile in einer Spalte
+gültigkeit : Überprüfung ob noch Platz in einer Spalte ist
+ausgabe_spielfeld : Spielfeld ausgeben
+gewinner : Überprüft bei jedem Zug ob der Spieler gewonnen hat
 
 
-Klasse: Spieler -> für den Input
-Methoden: mache_zug() -> Ausführung eines Spielzuges
+Klasse:
+Spiel -> Festlegung Spielablauf
+Methoden: 
+spielen : Der gesamte Spielablauf von Ausgabe des Spielfelds bis zum Spielende
 
 
-Klasse: Spiel -> für die Regeln und den Ablauf
