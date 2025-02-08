@@ -5,6 +5,7 @@ class TestGewinner(unittest.TestCase):
     def setUp(self):
         self.spielbrett = Spielbrett()
 
+<<<<<<< HEAD
     def test_tiefste_zeile(self):
         print("Running test_tiefste_zeile...")
         self.assertEqual(self.spielbrett.tiefste_zeile(0), 5)
@@ -27,43 +28,66 @@ class TestGewinner(unittest.TestCase):
 
     def test_gewinner_horizontal(self):
         print("Running test_gewinner_horizontal...")
+=======
+    def test_gewinner_horizontal(self):
+>>>>>>> 9b6239d1891e2ae70a91fe88cc99becf2fa9b557
         spieler = True
         self.spielbrett.spielfeld[(0, 0)] = "O"
         self.spielbrett.spielfeld[(1, 0)] = "O"
         self.spielbrett.spielfeld[(2, 0)] = "O"
         self.spielbrett.spielfeld[(3, 0)] = "O"
         self.assertTrue(self.spielbrett.gewinner(spieler))
+<<<<<<< HEAD
         print("test_gewinner_horizontal passed.")
 
     def test_gewinner_vertikal(self):
         print("Running test_gewinner_vertikal...")
+=======
+
+    def test_gewinner_vertikal(self):
+>>>>>>> 9b6239d1891e2ae70a91fe88cc99becf2fa9b557
         spieler = True
         self.spielbrett.spielfeld[(0, 0)] = "O"
         self.spielbrett.spielfeld[(0, 1)] = "O"
         self.spielbrett.spielfeld[(0, 2)] = "O"
         self.spielbrett.spielfeld[(0, 3)] = "O"
         self.assertTrue(self.spielbrett.gewinner(spieler))
+<<<<<<< HEAD
         print("test_gewinner_vertikal passed.")
 
     def test_gewinner_diagonal(self):
         print("Running test_gewinner_diagonal...")
+=======
+
+    def test_gewinner_diagonal(self):
+>>>>>>> 9b6239d1891e2ae70a91fe88cc99becf2fa9b557
         spieler = True
         self.spielbrett.spielfeld[(0, 0)] = "O"
         self.spielbrett.spielfeld[(1, 1)] = "O"
         self.spielbrett.spielfeld[(2, 2)] = "O"
         self.spielbrett.spielfeld[(3, 3)] = "O"
         self.assertTrue(self.spielbrett.gewinner(spieler))
+<<<<<<< HEAD
         print("test_gewinner_diagonal passed.")
 
     def test_keine_gewinner(self):
         print("Running test_keine_gewinner...")
+=======
+
+    def test_keine_gewinner(self):
+>>>>>>> 9b6239d1891e2ae70a91fe88cc99becf2fa9b557
         spieler = True
         self.spielbrett.spielfeld[(0, 0)] = "O"
         self.spielbrett.spielfeld[(1, 0)] = "O"
         self.spielbrett.spielfeld[(2, 0)] = "O"
         self.spielbrett.spielfeld[(3, 1)] = "X"
         self.assertFalse(self.spielbrett.gewinner(spieler))
+<<<<<<< HEAD
         print("test_keine_gewinner passed.")
 
 if __name__ == "__main__":
+=======
+
+if __name__ == '__main__':
+>>>>>>> 9b6239d1891e2ae70a91fe88cc99becf2fa9b557
     unittest.main()
