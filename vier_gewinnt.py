@@ -1,4 +1,18 @@
 class Spielbrett:
+    """
+        Repräsentiert das Spielbrett für Vier Gewinnt
+
+        spielfeld : dict
+            Speichert die Positionen der Spielsteine auf dem Brett.
+        Spalten : int
+            Anzahl der Spalten im Spielbrett (Standard: 7).
+        Zeilen : int
+            Anzahl der Zeilen im Spielbrett (Standard: 6).
+        Zellen : int
+            Gesamtanzahl der Spielfelder.
+        Richtungen : list of tuple
+            Liste aller möglichen Gewinnrichtungen im Spielfeld.
+    """
     def __init__(self):
         # Initialisieren des Spielfeldes
         self.spielfeld = {}
@@ -12,6 +26,17 @@ class Spielbrett:
 
     # Funktion zur Feststellung der tiefsten Zeile einer Spalte
     def tiefste_zeile(self, spalte):
+        """
+        Ermittelt die tiefste verfügbare Zeile in einer gegebenen Spalte.
+
+        Parameter
+        spalte : int
+            Die Spalte, in der die tiefste verfügbare Zeile gesucht wird.
+
+        Return
+        int or None
+            Die tiefste verfügbare Zeile oder None, falls die Spalte voll ist.
+        """
         for zeile in reversed(range(self.Zeilen)):
             # Überprüft, ob Feld frei ist
             if (spalte, zeile) not in self.spielfeld:
@@ -19,6 +44,17 @@ class Spielbrett:
 
     # Überprüfen, ob noch Platz in der Spalte ist
     def gültigkeit(self, spalte):
+        """
+        Überprüft, ob ein Spielzug in einer bestimmten Spalte möglich ist.
+
+        Parameter
+        spalte : int
+            Die zu überprüfende Spalte.
+
+        Return
+        bool
+            True, wenn der Spielzug gültig ist, sonst False.
+        """
         if spalte == 0 in self.spielfeld:
             return False
         if 0 <= spalte <= 7:
@@ -40,6 +76,17 @@ class Spielbrett:
 
     # Überprüfen, ob ein Spieler gewonnen hat
     def gewinner(self, spieler):
+        """
+        Überprüft, ob der aktuelle Spieler gewonnen hat.
+
+        Parameter
+        spieler : bool
+            True für Spieler 'O', False für Spieler 'X'.
+
+        Return
+        bool
+            True, wenn der Spieler gewonnen hat, sonst False.
+        """
         stein = "O" if spieler else "X"
         for position in self.spielfeld:
             for richtung in self.Richtungen:
@@ -58,6 +105,15 @@ class Spielbrett:
 
 
 class Spiel:
+    """
+    Repräsentiert das Vier-Gewinnt-Spiel.
+
+    Attribute
+    spielbrett : Spielbrett
+        Das Spielbrett-Objekt, das das Spielfeld verwaltet.
+    spieler : bool
+        Der aktuelle Spieler (True = 'O', False = 'X').
+    """
     def __init__(self):
         self.spielbrett = Spielbrett()
         # True = Spieler O, False = Spieler X
