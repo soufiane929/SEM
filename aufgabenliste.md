@@ -8,3 +8,5 @@ Aufgabenliste
 6. Theorie Software Design. - Michael
 7. Testumgebung hinzufügen und Tests durchführen - Soufiane
 8. Theorie Design Patterns. - Soufiane
+9. computer_spieler Soufiane
+10. computer_vs_mensch soufiane
