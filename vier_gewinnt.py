@@ -1,3 +1,4 @@
+from computer_spieler import ComputerSpieler
 class Spielbrett:
     """
         Repräsentiert das Spielbrett für Vier Gewinnt
